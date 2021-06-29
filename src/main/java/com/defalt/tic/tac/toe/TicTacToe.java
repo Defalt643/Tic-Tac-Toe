@@ -53,7 +53,7 @@ public class TicTacToe {
                     System.out.println("This position is already exist please try agian.");
                     continue;
                 }
-                Table[x-1][y-1]="Y";
+                Table[x-1][y-1]="O";
                 DisplayTable(Table);
             }for(int i=0;i<3;i++){
                 if(Table[i][0].equals(Table[i][1])&&Table[i][0].equals(Table[i][2])&&!Table[i][0].equals("-")){
@@ -75,7 +75,7 @@ public class TicTacToe {
                     }
             }round++;
 
-        }System.out.println("bye bye ....");
+        }System.out.println("Bye bye ....");
            
     }
 }
