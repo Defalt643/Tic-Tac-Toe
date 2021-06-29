@@ -36,7 +36,7 @@ public class TicTacToe {
             if(round%2==0){
                 System.out.println("X turn");
             }else{
-                System.out.println("Y turn");
+                System.out.println("O turn");
             }
             System.out.println("Please input Row Col :");
             x=kb.nextInt();
