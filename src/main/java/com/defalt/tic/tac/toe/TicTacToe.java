@@ -14,7 +14,7 @@ public class TicTacToe {
     }
     public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
-	int x,y;
+	String x1,y1;
 	String Table[][] =new String[3][3];
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
@@ -39,8 +39,21 @@ public class TicTacToe {
                 System.out.println("O turn");
             }
             System.out.println("Please input Row Col :");
-            x=kb.nextInt();
-            y=kb.nextInt();
+            x1=kb.next();
+            y1=kb.next();
+            try{
+                int x=Integer.parseInt(x1);
+                int y=Integer.parseInt(y1);
+            }catch(Exception NumberFormatException){
+                System.out.println("Row and Col must be number.Please try again!");
+                continue;
+            }
+            int x=Integer.parseInt(x1); 
+            int y=Integer.parseInt(y1);
+            if(x>3||x<1||y>3||y<1){
+                System.out.println("Row and Col must be 1 - 3.Please try again!");
+                continue;
+            }
             if(round%2==0){
                 if(!Table[x-1][y-1].equals("-")){
                     System.out.println("This position is already exist please try agian.");
