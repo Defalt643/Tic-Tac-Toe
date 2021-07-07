@@ -92,6 +92,18 @@ public class TicTacToeWithFunctions {
                 continue;
             }
         }
+    }public static boolean addXIntoTable(String table[][],int[] position){
+        if(!table[position[0]-1][position[1]-1].equals("-")){
+            System.out.println("This position is already exist please try agian.");
+            return false;
+        }table[position[0] - 1][position[1] - 1] = "X";
+        return true;
+    }public static boolean addYIntoTable(String table[][],int[] position){
+        if(!table[position[0]-1][position[1]-1].equals("-")){
+            System.out.println("This position is already exist please try agian.");
+            return false;
+        }table[position[0] - 1][position[1] - 1] = "Y";
+        return true;
     }
 
     public static void main(String[] args) {
