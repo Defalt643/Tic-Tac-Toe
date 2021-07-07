@@ -39,8 +39,8 @@ public class TicTacToeWithFunctions {
         }
     }
 
-    public static void addRound(int round) {
-        round++;
+    public static int addRound(int round) {
+        return ++round;
     }
 
     public static boolean checkWinner(String table[][]) {
@@ -73,8 +73,10 @@ public class TicTacToeWithFunctions {
         while(true){
             if(round%2==0){
                 System.out.println("X turn");
+                System.out.println("Please input Row Col :");
             }else{
                 System.out.println("O turn");
+                System.out.println("Please input Row Col :");
             }
             String x1 =kb.next();
             String y1 =kb.next();
@@ -102,17 +104,35 @@ public class TicTacToeWithFunctions {
         if(!table[position[0]-1][position[1]-1].equals("-")){
             System.out.println("This position is already exist please try agian.");
             return false;
-        }table[position[0] - 1][position[1] - 1] = "Y";
+        }table[position[0] - 1][position[1] - 1] = "O";
         return true;
     }
 
     public static void main(String[] args) {
-
         int round = 0;
         String table[][] = new String[3][3];
         initialTable(table);
         displayWelcomeAndTable(table);
-
-
+        while (true) {
+            if(round==9){
+                System.out.println("Tie game....");
+                break;
+            }
+            if (checkWinner(table)) {
+                break;
+            }int input[]=getInput(round);
+            if(round%2==0){
+                if(!addXIntoTable(table,input)){
+                    continue;
+                }displayTable(table);
+            }else{
+                if(!addYIntoTable(table,input)){
+                   continue; 
+                }displayTable(table);
+            }if(checkWinner(table)){
+                System.out.println("Player "+getWinner(round)+" win!....");
+            }round=addRound(round);
+        }
+        System.out.println("Bye bye.....");
     }
 }
