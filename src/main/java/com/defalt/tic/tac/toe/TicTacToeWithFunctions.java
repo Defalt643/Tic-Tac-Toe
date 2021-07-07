@@ -68,7 +68,32 @@ public class TicTacToeWithFunctions {
         return 'O';
     }
 
-   
+    public static int[] getInput(int round) {
+        Scanner kb = new Scanner(System.in);
+        while(true){
+            if(round%2==0){
+                System.out.println("X turn");
+            }else{
+                System.out.println("O turn");
+            }
+            String x1 =kb.next();
+            String y1 =kb.next();
+            try{
+                int x = Integer.parseInt(x1);
+                int y = Integer.parseInt(y1);
+                int arr[]={x,y};
+                if(x>3||x<1||y>3||y<1){
+                    System.out.println("Row and Col must be 1 - 3.Please try again!");
+                    continue;
+                }
+                return arr;
+            }catch(Exception NumberFormatException){
+                System.out.println("Row and Col must be number.Please try again!");
+                continue;
+            }
+        }
+    }
+
     public static void main(String[] args) {
 
         int round = 0;
