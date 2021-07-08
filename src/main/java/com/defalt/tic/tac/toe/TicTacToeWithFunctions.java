@@ -70,41 +70,47 @@ public class TicTacToeWithFunctions {
 
     public static int[] getInput(int round) {
         Scanner kb = new Scanner(System.in);
-        while(true){
-            if(round%2==0){
+        while (true) {
+            if (round % 2 == 0) {
                 System.out.println("X turn");
                 System.out.println("Please input Row Col :");
-            }else{
+            } else {
                 System.out.println("O turn");
                 System.out.println("Please input Row Col :");
             }
-            String x1 =kb.next();
-            String y1 =kb.next();
-            try{
+            String x1 = kb.next();
+            String y1 = kb.next();
+            try {
                 int x = Integer.parseInt(x1);
                 int y = Integer.parseInt(y1);
-                int arr[]={x,y};
-                if(x>3||x<1||y>3||y<1){
+                int arr[] = {x, y};
+                if (x > 3 || x < 1 || y > 3 || y < 1) {
                     System.out.println("Row and Col must be 1 - 3.Please try again!");
                     continue;
                 }
                 return arr;
-            }catch(Exception NumberFormatException){
+            } catch (Exception NumberFormatException) {
                 System.out.println("Row and Col must be number.Please try again!");
                 continue;
             }
         }
-    }public static boolean addXIntoTable(String table[][],int[] position){
-        if(!table[position[0]-1][position[1]-1].equals("-")){
+    }
+
+    public static boolean addXIntoTable(String table[][], int[] position) {
+        if (!table[position[0] - 1][position[1] - 1].equals("-")) {
             System.out.println("This position is already exist please try agian.");
             return false;
-        }table[position[0] - 1][position[1] - 1] = "X";
+        }
+        table[position[0] - 1][position[1] - 1] = "X";
         return true;
-    }public static boolean addYIntoTable(String table[][],int[] position){
-        if(!table[position[0]-1][position[1]-1].equals("-")){
+    }
+
+    public static boolean addYIntoTable(String table[][], int[] position) {
+        if (!table[position[0] - 1][position[1] - 1].equals("-")) {
             System.out.println("This position is already exist please try agian.");
             return false;
-        }table[position[0] - 1][position[1] - 1] = "O";
+        }
+        table[position[0] - 1][position[1] - 1] = "O";
         return true;
     }
 
@@ -114,24 +120,27 @@ public class TicTacToeWithFunctions {
         initialTable(table);
         displayWelcomeAndTable(table);
         while (true) {
-            if(round==9){
+            if (round == 9) {
                 System.out.println("Tie game....");
                 break;
             }
-            if (checkWinner(table)) {
-                break;
-            }int input[]=getInput(round);
-            if(round%2==0){
-                if(!addXIntoTable(table,input)){
+            int input[] = getInput(round);
+            if (round % 2 == 0) {
+                if (!addXIntoTable(table, input)) {
                     continue;
-                }displayTable(table);
-            }else{
-                if(!addYIntoTable(table,input)){
-                   continue; 
-                }displayTable(table);
-            }if(checkWinner(table)){
-                System.out.println("Player "+getWinner(round)+" win!....");
-            }round=addRound(round);
+                }
+                displayTable(table);
+            } else {
+                if (!addYIntoTable(table, input)) {
+                    continue;
+                }
+                displayTable(table);
+            }
+            if (checkWinner(table)) {
+                System.out.println("Player " + getWinner(round) + " win!....");
+                break;
+            }
+            round = addRound(round);
         }
         System.out.println("Bye bye.....");
     }
