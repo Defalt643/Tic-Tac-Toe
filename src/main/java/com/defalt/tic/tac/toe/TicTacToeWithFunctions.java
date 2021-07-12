@@ -44,24 +44,49 @@ public class TicTacToeWithFunctions {
     }
 
     public static boolean checkWinner(String table[][]) {
+        if (checkHorizontal(table)) {
+            return true;
+        }
+        if (checkVertical(table)) {
+            return true;
+        }
+        if (checkDiagonal(table)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkHorizontal(String table[][]) {
         for (int i = 0; i < 3; i++) {
-            if (table[i][0].equals(table[i][1]) 
-                    && table[i][0].equals(table[i][2]) 
+            if (table[i][0].equals(table[i][1])
+                    && table[i][0].equals(table[i][2])
                     && !table[i][0].equals("-")) {
                 return true;
             }
-            if (table[0][i].equals(table[1][i]) 
-                    && table[0][i].equals(table[2][i]) 
+        }
+        return false;
+    }
+
+    public static boolean checkVertical(String table[][]) {
+        for (int i = 0; i < 3; i++) {
+            if (table[0][i].equals(table[1][i])
+                    && table[0][i].equals(table[2][i])
                     && !table[0][i].equals("-")) {
                 return true;
             }
-            if (table[0][0].equals(table[1][1]) 
-                    && table[0][0].equals(table[2][2]) 
+        }
+        return false;
+    }
+
+    public static boolean checkDiagonal(String table[][]) {
+        for (int i = 0; i < 3; i++) {
+            if (table[0][0].equals(table[1][1])
+                    && table[0][0].equals(table[2][2])
                     && !table[0][0].equals("-")) {
                 return true;
             }
-            if (table[2][0].equals(table[1][1]) 
-                    && table[2][0].equals(table[0][2]) 
+            if (table[2][0].equals(table[1][1])
+                    && table[2][0].equals(table[0][2])
                     && !table[2][0].equals("-")) {
                 return true;
             }
@@ -84,29 +109,32 @@ public class TicTacToeWithFunctions {
             } else {
                 System.out.println("O turn\nPlease input Row Col :");
             }
-            String x1 = kb.next(),y1 = kb.next();
-            if(!checkException(x1,y1)){
-                int x = Integer.parseInt(x1),y = Integer.parseInt(y1);
+            String x1 = kb.next(), y1 = kb.next();
+            if (!checkException(x1, y1)) {
+                int x = Integer.parseInt(x1), y = Integer.parseInt(y1);
                 int arr[] = {x, y};
                 return arr;
-            }else{
+            } else {
                 continue;
             }
         }
-    }public static boolean checkException(String x1,String y1){
+    }
+
+    public static boolean checkException(String x1, String y1) {
         try {
-                int x = Integer.parseInt(x1);
-                int y = Integer.parseInt(y1);
-                int arr[] = {x, y};
-                if (x > 3 || x < 1 || y > 3 || y < 1) {
-                    System.out.println("Row and Col must be 1 - 3.Please try again!");
-                    return true;
-                }return false;
-                
-            } catch (Exception NumberFormatException) {
-                System.out.println("Row and Col must be number.Please try again!");
+            int x = Integer.parseInt(x1);
+            int y = Integer.parseInt(y1);
+            int arr[] = {x, y};
+            if (x > 3 || x < 1 || y > 3 || y < 1) {
+                System.out.println("Row and Col must be 1 - 3.Please try again!");
                 return true;
             }
+            return false;
+
+        } catch (Exception NumberFormatException) {
+            System.out.println("Row and Col must be number.Please try again!");
+            return true;
+        }
     }
 
     public static boolean addXIntoTable(String table[][], int[] position) {
