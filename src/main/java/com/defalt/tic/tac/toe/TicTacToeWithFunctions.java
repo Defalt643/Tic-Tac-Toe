@@ -45,16 +45,24 @@ public class TicTacToeWithFunctions {
 
     public static boolean checkWinner(String table[][]) {
         for (int i = 0; i < 3; i++) {
-            if (table[i][0].equals(table[i][1]) && table[i][0].equals(table[i][2]) && !table[i][0].equals("-")) {
+            if (table[i][0].equals(table[i][1]) 
+                    && table[i][0].equals(table[i][2]) 
+                    && !table[i][0].equals("-")) {
                 return true;
             }
-            if (table[0][i].equals(table[1][i]) && table[0][i].equals(table[2][i]) && !table[0][i].equals("-")) {
+            if (table[0][i].equals(table[1][i]) 
+                    && table[0][i].equals(table[2][i]) 
+                    && !table[0][i].equals("-")) {
                 return true;
             }
-            if (table[0][0].equals(table[1][1]) && table[0][0].equals(table[2][2]) && !table[0][0].equals("-")) {
+            if (table[0][0].equals(table[1][1]) 
+                    && table[0][0].equals(table[2][2]) 
+                    && !table[0][0].equals("-")) {
                 return true;
             }
-            if (table[2][0].equals(table[1][1]) && table[2][0].equals(table[0][2]) && !table[2][0].equals("-")) {
+            if (table[2][0].equals(table[1][1]) 
+                    && table[2][0].equals(table[0][2]) 
+                    && !table[2][0].equals("-")) {
                 return true;
             }
         }
@@ -72,28 +80,33 @@ public class TicTacToeWithFunctions {
         Scanner kb = new Scanner(System.in);
         while (true) {
             if (round % 2 == 0) {
-                System.out.println("X turn");
-                System.out.println("Please input Row Col :");
+                System.out.println("X turn\nPlease input Row Col :");
             } else {
-                System.out.println("O turn");
-                System.out.println("Please input Row Col :");
+                System.out.println("O turn\nPlease input Row Col :");
             }
-            String x1 = kb.next();
-            String y1 = kb.next();
-            try {
+            String x1 = kb.next(),y1 = kb.next();
+            if(!checkException(x1,y1)){
+                int x = Integer.parseInt(x1),y = Integer.parseInt(y1);
+                int arr[] = {x, y};
+                return arr;
+            }else{
+                continue;
+            }
+        }
+    }public static boolean checkException(String x1,String y1){
+        try {
                 int x = Integer.parseInt(x1);
                 int y = Integer.parseInt(y1);
                 int arr[] = {x, y};
                 if (x > 3 || x < 1 || y > 3 || y < 1) {
                     System.out.println("Row and Col must be 1 - 3.Please try again!");
-                    continue;
-                }
-                return arr;
+                    return true;
+                }return false;
+                
             } catch (Exception NumberFormatException) {
                 System.out.println("Row and Col must be number.Please try again!");
-                continue;
+                return true;
             }
-        }
     }
 
     public static boolean addXIntoTable(String table[][], int[] position) {
@@ -124,14 +137,13 @@ public class TicTacToeWithFunctions {
                 System.out.println("Tie game....");
                 break;
             }
-            int input[] = getInput(round);
             if (round % 2 == 0) {
-                if (!addXIntoTable(table, input)) {
+                if (!addXIntoTable(table, getInput(round))) {
                     continue;
                 }
                 displayTable(table);
             } else {
-                if (!addYIntoTable(table, input)) {
+                if (!addYIntoTable(table, getInput(round))) {
                     continue;
                 }
                 displayTable(table);
