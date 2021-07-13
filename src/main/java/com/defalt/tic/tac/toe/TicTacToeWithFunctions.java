@@ -79,18 +79,17 @@ public class TicTacToeWithFunctions {
     }
 
     public static boolean checkDiagonal(String table[][]) {
-        for (int i = 0; i < 3; i++) {
-            if (table[0][0].equals(table[1][1])
-                    && table[0][0].equals(table[2][2])
-                    && !table[0][0].equals("-")) {
-                return true;
-            }
-            if (table[2][0].equals(table[1][1])
-                    && table[2][0].equals(table[0][2])
-                    && !table[2][0].equals("-")) {
-                return true;
-            }
+        if (table[0][0].equals(table[1][1])
+                && table[0][0].equals(table[2][2])
+                && !table[0][0].equals("-")) {
+            return true;
         }
+        if (table[2][0].equals(table[1][1])
+                && table[2][0].equals(table[0][2])
+                && !table[2][0].equals("-")) {
+            return true;
+        }
+
         return false;
     }
 
